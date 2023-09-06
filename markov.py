@@ -49,43 +49,66 @@ def make_chains(text_string):
 
     text_words = text_string.split()
     n = 0
-
+    
     for word in text_words:
-        while (n + 2) < len(text_words):            
-
+        if (n + 2) < len(text_words):            
+           
             current_key = (text_words[n], text_words[n+1])
             follow_word = text_words[n+2]
-    
-            if current_key in chains == False:
-                chains[current_key] = []
-                chains[current_key].append(follow_word)
-                n += 1
             
-            else:
+
+            if current_key in chains:
                 chains[current_key].append(follow_word)   
                 n += 1
 
-    
-    
+            else: 
+                chains[current_key] = []
+                chains[current_key].append(follow_word)
+                n += 1
+
+    return chains
 
 
-    
-    
 
-    # print(text_words)
-
-    #for word in text_words:
-    #    text_words[::2]
-
-    #return chains
-
-print(make_chains("hi there mary hi there juanita"))
 def make_text(chains):
     """Return text from chains."""
 
     words = []
 
     # your code goes here
+    key_list = list(chains.keys())              #change into list
+   
+    random_key = choice(key_list)               #getting a random key
+    
+    for word in random_key:
+        words.append(word)                      #adding each word from key into words  (have 2 words)
+
+    print("initial key added >> ", words)
+
+    random_value = chains[random_key]           #Assigning the random key value list
+    transition_value = choice(random_value)     #Random value chosen and assigned to transition value
+    words.append(transition_value)              #Adding value to words list
+
+    print("after first append >> ", words)
+
+    new_key = words[-2:]                        
+    print("new key made ", new_key)
+
+    random_value = chains[random_key]
+
+    transition_value = choice(random_value)
+    words.append(transition_value)
+
+    # for item in key_list:
+    #     for word in item:
+    #         words.append(word)
+
+
+    # print(words)
+    # print(new_key)
+
+                  
+    # print(random_key)
 
     return ' '.join(words)
 
@@ -97,6 +120,7 @@ input_text = open_and_read_file(input_path)
 
 # Get a Markov chain
 chains = make_chains(input_text)
+# print(chains)
 
 # Produce random text
 random_text = make_text(chains)
