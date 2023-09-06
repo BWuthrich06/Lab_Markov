@@ -91,13 +91,23 @@ def make_text(chains):
 
     print("after first append >> ", words)
 
-    new_key = words[-2:]                        
-    print("new key made ", new_key)
+    
 
-    random_value = chains[random_key]
+    while True:
+        new_key = tuple(words[-2:])                        
+        # print("new key made ", new_key)
+        
+        if new_key in chains:
+            random_value = chains[new_key]
 
-    transition_value = choice(random_value)
-    words.append(transition_value)
+            # print("random value found >> ", random_value)
+
+            transition_value = choice(random_value)
+
+            # print("transition value >> ", transition_value)
+            words.append(transition_value)
+        else:
+            break
 
     # for item in key_list:
     #     for word in item:
