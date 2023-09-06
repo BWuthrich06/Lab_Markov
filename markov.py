@@ -109,7 +109,7 @@ def make_text(chains):
         else:
             break
 
-    return ' '.join(words)
+    return ','.join(words)
 
 
 input_path = 'gettysburg.txt'
