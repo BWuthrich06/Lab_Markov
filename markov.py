@@ -13,6 +13,7 @@ def open_and_read_file(file_path):
     file = open(file_path)
 
     words = file.read()
+    file.close()
 
     return words
 
@@ -44,7 +45,7 @@ def make_chains(text_string):
     """
 
 
-    chains = {}                                     
+    chains = {}                                    
 
     text_words = text_string.split()
     n = 0
@@ -53,19 +54,19 @@ def make_chains(text_string):
         while (n + 2) < len(text_words):            
 
             current_key = (text_words[n], text_words[n+1])
-            follow_word = (text_words[n+2])
+            follow_word = text_words[n+2]
     
             if current_key in chains == False:
-                chains[current_key] = follow_word
+                chains[current_key] = []
+                chains[current_key].append(follow_word)
                 n += 1
             
             else:
-                chains[current_key] #need to add value to a list , chains[current_key] = []???   Can we append??  extend??
+                chains[current_key].append(follow_word)   
                 n += 1
 
     
     
-    print(chains)
 
 
     
