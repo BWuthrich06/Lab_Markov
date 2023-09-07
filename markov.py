@@ -49,12 +49,24 @@ def make_chains(text_string):
 
     text_words = text_string.split()
     n = 0
+
+    # for idx in range(len(text_words) - 2): # range() creates a list [0, 1, 2, ... length - 2]
+    #     current_key = (text_words[idx], text_words[idx+1])
+    #     follow_word = text_words[idx+2]
     
     for word in text_words:
         if (n + 2) < len(text_words):            
            
             current_key = (text_words[n], text_words[n+1])
             follow_word = text_words[n+2]
+
+            # in, not in, and, or, not      
+
+            # if current_key not in chains:
+            #     chains[current_key] = []
+
+            # chains[current_key].append(follow_word)   
+            # n += 1
             
 
             if current_key in chains:
@@ -84,6 +96,7 @@ def make_text(chains):
         words.append(word)                      #adding each word from key into words  (have 2 words)
 
     # print("initial key added >> ", words)
+    # words = ["would", "you"]
 
     random_value = chains[random_key]           #Assigning the random key value list
     transition_value = choice(random_value)     #Random value chosen and assigned to transition value
@@ -109,7 +122,7 @@ def make_text(chains):
         else:
             break
 
-    return ','.join(words)
+    return ' '.join(words)
 
 
 input_path = 'gettysburg.txt'
